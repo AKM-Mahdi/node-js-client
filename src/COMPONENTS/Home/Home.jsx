@@ -4,7 +4,16 @@ const Home = () => {
   const [user, setUser] = useState({});
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   const handleOnBlur = (e) => {
@@ -12,7 +21,6 @@ const Home = () => {
     const value = e.target.value;
 
     const updatedUserList = { ...user };
-    // console.log(updatedUserList);
     updatedUserList[field] = value;
     setUser(updatedUserList);
   };
@@ -20,9 +28,11 @@ const Home = () => {
     <div>
       <h1>Submit to check</h1>
       <form onSubmit={handleSubmit}>
-        <input onBlur={handleOnBlur} type="text" name="name" id="" />
+        <input onBlur={handleOnBlur} type="text" name="name" />
         <br />
-        <input onBlur={handleOnBlur} type="email" name="email" id="" />
+        <input onBlur={handleOnBlur} type="email" name="email" />
+        <br />
+        <input onBlur={handleOnBlur} type="text" name="address" />
         <br />
         <button type="submit">Add User</button>
       </form>
