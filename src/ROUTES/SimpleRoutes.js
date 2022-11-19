@@ -10,5 +10,6 @@ export const routes = createBrowserRouter([
   {
     path: "/users",
     element: <UserList></UserList>,
+    loader: () => fetch("http://localhost:5000/users"),
   },
 ]);
