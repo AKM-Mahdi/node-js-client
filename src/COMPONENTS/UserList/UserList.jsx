@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const UserList = () => {
   const users = useLoaderData();
@@ -22,7 +22,7 @@ const UserList = () => {
         });
     }
   };
-  console.log(users);
+
   return (
     <div>
       <h2>User List {displayUser.length}</h2>
@@ -31,6 +31,9 @@ const UserList = () => {
           <span>{item.name}</span>
           <span>{item.email}</span>
           <button onClick={() => handleDelete(item)}>Delete</button>
+          <Link to={`/users/${item._id}`}>
+            <button>UPDATE</button>{" "}
+          </Link>
         </div>
       ))}
     </div>
