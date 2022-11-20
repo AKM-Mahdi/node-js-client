@@ -14,12 +14,12 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
+    e.target.reset();
   };
 
   const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
-
     const updatedUserList = { ...user };
     updatedUserList[field] = value;
     setUser(updatedUserList);
